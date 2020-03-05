@@ -12,9 +12,9 @@ fi
 cd $(dirname $0)
 mkdir -p data
 
-year_start=$1
+year_start=${1##0}
 year_end=$year_start
-month_start=$2
+month_start=${2##0}
 month_end=$((month_start + 1))
 if ((month_end == 13)); then
     ((year_end++))
