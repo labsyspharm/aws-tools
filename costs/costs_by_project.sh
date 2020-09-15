@@ -45,7 +45,7 @@ jq \
     .ResultsByTime[0].Groups
     | map([
         (.Keys[0] | sub("^project\\$"; "")),
-        (.Metrics.AmortizedCost.Amount | tonumber)
+        (.Metrics.BlendedCost.Amount | tonumber)
     ])
     | .[]
     | @csv
