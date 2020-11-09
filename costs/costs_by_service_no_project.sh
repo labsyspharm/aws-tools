@@ -49,7 +49,7 @@ jq \
     .ResultsByTime[0].Groups
     | map([
         (.Keys[0]),
-        (.Metrics.UnblendedCost.Amount | tonumber)
+        (.Metrics.AmortizedCost.Amount | tonumber)
     ])
     | .[]
     | @csv
