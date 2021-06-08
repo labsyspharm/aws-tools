@@ -1,0 +1,22 @@
+{
+    "And": [
+        {
+            "Dimensions": {
+                "Values": [
+                    "DataTransfer-Out-Bytes"
+                ],
+                "Key": "USAGE_TYPE"
+            }
+        },
+        {
+            "Not": {
+                "Dimensions": {
+                    "Values": [
+                        "Refund"
+                    ],
+                    "Key": "SERVICE"
+                }
+            }
+        }
+    ]
+}
