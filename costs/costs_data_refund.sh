@@ -34,9 +34,21 @@ if [ ! -e $data_path ]; then
         --time-period Start=$start,End=$end \
         --granularity MONTHLY \
         --metrics BlendedCost UnblendedCost AmortizedCost \
+        --group-by Type=TAG,Key=project \
         --filter file://filter_datatransfer_out.json \
         > $data_path
 fi
 
 # Factor of 0.88 accounts for 12% EDP discount.
-jq '.ResultsByTime[-1].Total.AmortizedCost.Amount | tonumber | .* 0.88' < $data_path
+echo 'Project,Cost'
+jq \
+    -r \
+    '
+    .ResultsByTime[0].Groups
+    | map([
+        (.Keys[0] | sub("^project\\$"; "")),
+        (.Metrics.AmortizedCost.Amount | tonumber | .* 0.88)
+    ])
+    | .[]
+    | @csv' \
+    < $data_path
