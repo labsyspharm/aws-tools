@@ -3,7 +3,8 @@
         {
             "Dimensions": {
                 "Values": [
-                    "DataTransfer-Out-Bytes"
+                    "DataTransfer-Out-Bytes",
+                    "USE1-EUW2-AWS-Out-Bytes"
                 ],
                 "Key": "USAGE_TYPE"
             }
